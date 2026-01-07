@@ -1,5 +1,15 @@
 # GTA SA Skin Manager 🎮
 
+[![Android CI Build](https://github.com/bzns4665-cyber/GTA-SA-Skin-Manager/actions/workflows/android-build.yml/badge.svg)](https://github.com/bzns4665-cyber/GTA-SA-Skin-Manager/actions/workflows/android-build.yml)
+
+## 📥 التحميل المباشر
+
+**[⬇️ حمّل أحدث إصدار من هنا](https://github.com/bzns4665-cyber/GTA-SA-Skin-Manager/releases/latest)**
+
+حمّل ملف `app-debug.apk` من الإصدارات وثبته على هاتفك الأندرويد مباشرة!
+
+---
+
 ## نظرة عامة
 
 تطبيق أندرويد متقدم لإدارة وتغيير سكنات الشخصيات والمركبات في لعبة **Grand Theft Auto: San Andreas** للأندرويد. يدمج هذا التطبيق وظائف تطبيقي **GTA IMG Tool** و **TXD Tool** في واجهة واحدة سهلة الاستخدام.
@@ -23,7 +33,7 @@
 ### خطوات التثبيت
 
 1. **تثبيت التطبيق**:
-   - قم بتحميل ملف APK
+   - قم بتحميل ملف APK من [الإصدارات](https://github.com/bzns4665-cyber/GTA-SA-Skin-Manager/releases)
    - قم بتثبيت التطبيق على جهازك
    - امنح التطبيق صلاحيات الوصول للملفات
 
@@ -118,8 +128,8 @@ Sector Size: 2048 bytes
 
 - Android Studio Hedgehog | 2023.1.1 أو أحدث
 - Android SDK 34
-- Gradle 8.1+
-- JDK 8 أو أحدث
+- Gradle 8.2+
+- JDK 17 أو أحدث
 
 ### خطوات البناء:
 
