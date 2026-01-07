@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#f5f5f5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GTA SA Skin Manager"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2196F3"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="مدير سكنات GTA San Andreas"
+            android:textSize="18sp"
+            android:textColor="#666"
+            android:layout_marginBottom="32dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="اسم الشخصية المراد تغييرها"
+                    android:textSize="14sp"
+                    android:textColor="#666"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/editCharacterName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="andre"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@android:drawable/edit_text" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnSelectDff"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="اختر ملف DFF (النموذج)"
+            android:textSize="16sp"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvDffPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="لم يتم اختيار ملف DFF"
+            android:textSize="12sp"
+            android:textColor="#999"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnSelectTxd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="اختر ملف TXD (الخامات)"
+            android:textSize="16sp"
+            android:backgroundTint="#FF9800"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvTxdPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="لم يتم اختيار ملف TXD"
+            android:textSize="12sp"
+            android:textColor="#999"
+            android:padding="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnInstall"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="تثبيت السكن"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="#2196F3"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="في انتظار التثبيت..."
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="#fff"
+            android:elevation="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ملاحظة: تأكد من تثبيت لعبة GTA San Andreas على جهازك"
+            android:textSize="12sp"
+            android:textColor="#f44336"
+            android:gravity="center"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>
