@@ -1,0 +1,38 @@
+workflows:
+  android-workflow:
+    name: Android Build
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - android_credentials
+      vars:
+        PACKAGE_NAME: "com.gtasa.skinmanager"
+      java: 17
+      node: latest
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Initialize Gradle Wrapper
+        script: |
+          gradle wrapper --gradle-version 8.2
+          chmod +x gradlew
+      - name: Build Android Debug APK
+        script: |
+          ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - bzns4665@gmail.com
+        notify:
+          success: true
+          failure: true
