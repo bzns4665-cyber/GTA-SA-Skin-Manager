@@ -9,7 +9,6 @@ workflows:
       vars:
         PACKAGE_NAME: "com.gtasa.skinmanager"
       java: 17
-      node: latest
     triggering:
       events:
         - push
@@ -20,13 +19,15 @@ workflows:
       - name: Set up local.properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Initialize Gradle Wrapper
+      - name: Install Gradle 8.2
         script: |
-          gradle wrapper --gradle-version 8.2
-          chmod +x gradlew
+          wget https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          unzip -q gradle-8.2-bin.zip
+          export PATH=$PWD/gradle-8.2/bin:$PATH
       - name: Build Android Debug APK
         script: |
-          ./gradlew assembleDebug
+          export PATH=$PWD/gradle-8.2/bin:$PATH
+          gradle assembleDebug --no-daemon --stacktrace
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
