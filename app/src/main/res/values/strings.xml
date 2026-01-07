@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GTA SA Skin Manager</string>
+    <string name="character_name_hint">اسم الشخصية (مثل: andre)</string>
+    <string name="select_dff">اختر ملف DFF</string>
+    <string name="select_txd">اختر ملف TXD</string>
+    <string name="install_skin">تثبيت السكن</string>
+    <string name="no_dff_selected">لم يتم اختيار ملف DFF</string>
+    <string name="no_txd_selected">لم يتم اختيار ملف TXD</string>
+    <string name="status_waiting">في انتظار التثبيت...</string>
+    <string name="status_installing">جاري التثبيت...</string>
+    <string name="status_success">تم التثبيت بنجاح!</string>
+    <string name="status_error">حدث خطأ في التثبيت</string>
+    <string name="permission_required">الصلاحيات مطلوبة للعمل</string>
+    <string name="gta_not_found">لم يتم العثور على GTA SA</string>
+    <string name="note">ملاحظة: تأكد من تثبيت لعبة GTA San Andreas على جهازك</string>
+</resources>
