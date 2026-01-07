@@ -1,0 +1,11 @@
+# Gradle Wrapper JAR File
+
+This file should contain the gradle-wrapper.jar binary.
+
+For actual building, you need to:
+
+1. Clone the repository locally
+2. Run: `gradle wrapper` to generate the gradle-wrapper.jar
+3. Or download from: https://services.gradle.org/distributions/gradle-8.2-bin.zip
+
+The GitHub Actions workflow will handle this automatically during the build process.
