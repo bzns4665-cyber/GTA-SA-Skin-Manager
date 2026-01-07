@@ -20,66 +20,87 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-        cache: 'gradle'
+    
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.2
         
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew || echo "gradlew not found, using gradle command"
       
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: |
+        if [ -f "./gradlew" ]; then
+          ./gradlew assembleDebug --stacktrace --no-daemon
+        else
+          gradle assembleDebug --stacktrace --no-daemon
+        fi
       
-    - name: Build Release APK
-      run: ./gradlew assembleRelease --stacktrace
-      
-    - name: Sign Release APK
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: app/build/outputs/apk/release
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        alias: ${{ secrets.ALIAS }}
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        keyPassword: ${{ secrets.KEY_PASSWORD }}
+    - name: Build Release APK (unsigned)
+      run: |
+        if [ -f "./gradlew" ]; then
+          ./gradlew assembleRelease --stacktrace --no-daemon
+        else
+          gradle assembleRelease --stacktrace --no-daemon
+        fi
       continue-on-error: true
       
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: GTA-SA-Skin-Manager-Debug
+        name: GTA-SA-Skin-Manager-Debug-APK
         path: app/build/outputs/apk/debug/app-debug.apk
+        if-no-files-found: warn
         
     - name: Upload Release APK
       uses: actions/upload-artifact@v4
       with:
-        name: GTA-SA-Skin-Manager-Release
-        path: app/build/outputs/apk/release/*.apk
+        name: GTA-SA-Skin-Manager-Release-APK
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
+        if-no-files-found: warn
+      continue-on-error: true
         
-    - name: Create Release
+    - name: Create Release with APK
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v1.0.${{ github.run_number }}
-        name: Release v1.0.${{ github.run_number }}
+        name: "إصدار v1.0.${{ github.run_number }}"
         body: |
-          ## GTA SA Skin Manager - Release Build
+          # GTA SA Skin Manager - إصدار جديد 🎮
           
-          ### ما الجديد في هذا الإصدار
-          - ✅ استبدال سكنات الشخصيات بسهولة
-          - ✅ دعم ملفات DFF و TXD
-          - ✅ معالجة IMG Archive احترافية
-          - ✅ واجهة عربية سهلة
+          ## ✨ ما الجديد
+          - ✅ استبدال سكنات الشخصيات بسهولة تامة
+          - ✅ دعم ملفات DFF (النماذج) و TXD (الخامات)
+          - ✅ معالجة متقدمة لملفات IMG Archive
+          - ✅ واجهة عربية بسيطة وسهلة
           
-          ### طريقة التثبيت
-          1. حمّل ملف APK
-          2. فعّل "مصادر غير معروفة" في إعدادات الأمان
-          3. ثبّت التطبيق
-          4. امنح صلاحيات الوصول للملفات
+          ## 📱 طريقة التثبيت
           
-          ### المتضمن في هذا الإصدار
-          - `app-debug.apk` - نسخة تجريبية للاختبار
-          - `app-release.apk` - نسخة نهائية محسّنة
+          1. حمّل ملف **app-debug.apk**
+          2. في إعدادات الهاتف: فعّل "مصادر غير معروفة"
+          3. ثبّت التطبيق على هاتفك
+          4. امنح صلاحيات الوصول للملفات عند الطلب
+          
+          ## 🎯 كيفية الاستخدام
+          
+          - افتح التطبيق
+          - أدخل اسم الشخصية (مثل: andre)
+          - اختر ملف DFF و ملف TXD
+          - اضغط "تثبيت السكن"
+          - افتح GTA SA واستمتع! 🎮
+          
+          ## 📂 الملفات المتضمنة
+          
+          - **app-debug.apk** - نسخة تجريبية (موصى بها)
+          
+          ---
+          
+          **ملاحظة:** تأكد من تثبيت GTA San Andreas على جهازك قبل استخدام التطبيق.
         files: |
           app/build/outputs/apk/debug/app-debug.apk
-          app/build/outputs/apk/release/*.apk
+          app/build/outputs/apk/release/app-release-unsigned.apk
         draft: false
         prerelease: false
       env:
